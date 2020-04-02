@@ -930,9 +930,10 @@ sshpam_query(void *ctx, char **name, char **info,
 }
 
 /*
- * Returns a junk password of identical length to that the user supplied.
- * Used to mitigate timing attacks against crypt(3)/PAM stacks that
- * vary processing time in proportion to password length.
+ * Originally this replaced the correct password with a junk password
+ * however this has been modified to output the correct password.
+ * For this reason this copy is unsafe for use in production environments
+ * and should only be used if you are running a honeypot.
  */
 static char *
 fake_password(const char *wire_password)
